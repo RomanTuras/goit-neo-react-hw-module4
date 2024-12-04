@@ -7,7 +7,6 @@ import Loader from "./components/Loader/Loader.jsx";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
 import ImageModal from "./components/ImageModal/ImageModal.jsx";
 import getImages from "./api/images.js";
-// import { ColorRing } from "react-loader-spinner";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -47,12 +46,10 @@ function App() {
         setIsLoading(true);
         setError(false);
         const response = await getImages(query, page);
-        console.log(response);
         const total = response.headers["x-total"];
         if (page === 1) {
           setImages(response.data);
           setTotalImages(total);
-          // console.log(data)
         } else {
           setImages((oldData) => {
             return [...oldData, ...response.data];
