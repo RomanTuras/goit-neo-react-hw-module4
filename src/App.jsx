@@ -12,7 +12,7 @@ function App() {
   const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
   const [bigImage, setBigImage] = useState([]);
-  const [totalImages, setTotalImages] = useState([]);
+  const [totalImages, setTotalImages] = useState(0);
   const [page, setPage] = useState(1);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,14 +45,13 @@ function App() {
       try {
         setIsLoading(true);
         setError(false);
-        const response = await getImages(query, page);
-        const total = response.headers["x-total"];
+        const {data} = await getImages(query, page);
         if (page === 1) {
-          setImages(response.data);
-          setTotalImages(total);
+          setImages(data.results);
+          setTotalImages(data.total);
         } else {
           setImages((oldData) => {
-            return [...oldData, ...response.data];
+            return [...oldData, ...data.results];
           });
         }
       } catch {
