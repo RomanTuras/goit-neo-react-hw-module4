@@ -1,0 +1,16 @@
+.bigImage {
+  max-height: 80vh;
+}
+
+.author,
+.likes, .info {
+  display: flex;
+  align-items: center;
+  margin-top: 6px;
+  gap: 6px;
+  color: darkslategray;
+}
+
+.info {
+  gap: 16px
+}
